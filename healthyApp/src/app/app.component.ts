@@ -18,7 +18,7 @@ export class AppComponent {
   filtering: string;
   filteringsub: string;
   sorting: string;
-  constructor(private _httpService: HttpService) {}
+  constructor(private _httpService: HttpService) { }
   ngOnInit() {
     this.products = [
       {
@@ -157,7 +157,7 @@ export class AppComponent {
     ];
     this.subcategories = ["Guard", "Forward", "Center"];
     this.setVariables();
-    window.onscroll = function() {
+    window.onscroll = function () {
       scrollFunction();
     };
 
@@ -208,19 +208,19 @@ export class AppComponent {
   }
   sortBy() {
     if (this.sorting === "name") {
-      this.displayed.sort(function(a, b) {
+      this.displayed.sort(function (a, b) {
         return a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1;
       });
     } else if (this.sorting === "nameR") {
-      this.displayed.sort(function(a, b) {
+      this.displayed.sort(function (a, b) {
         return b.name.toLowerCase() < a.name.toLowerCase() ? -1 : 1;
       });
     } else if (this.sorting === "price low") {
-      this.displayed.sort(function(a, b) {
+      this.displayed.sort(function (a, b) {
         return parseInt(a.price) < parseInt(b.price) ? -1 : 1;
       });
     } else if (this.sorting === "price high") {
-      this.displayed.sort(function(a, b) {
+      this.displayed.sort(function (a, b) {
         return parseInt(a.price) > parseInt(b.price) ? -1 : 1;
       });
     }
@@ -268,7 +268,7 @@ export class AppComponent {
       let temp = this.displayed.filter(product => product.type === value);
       let temp1 = temp
       this.displayed = temp1;
-    } 
+    }
     else if (value === "Forward") {
       this.filteringsub = "Forward";
       let temp = this.displayed.filter(product => product.type === value);
@@ -277,13 +277,13 @@ export class AppComponent {
 
       // temp = this.createTable(temp, 0);
 
-    }  else if (value === "Center") {
+    } else if (value === "Center") {
       let temp = this.displayed.filter(product => product.type === value);
       let temp1 = temp;
       this.displayed = temp1;
 
       // temp = this.createTable(temp, 0);
-      
+
     } else {
       this.displayed = this.products;
     }

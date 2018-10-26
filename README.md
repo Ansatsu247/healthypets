@@ -18,7 +18,8 @@ the projects opens in http://localhost:8000/
 
 Functionality that works,
 Search Bar works by searching by product's name.
-filter by catergory works, but you can only choose one. Sub catergory works(Didn't really want to spend too much time building and wanting to filter complex json data)
+
+Filtering by catergory works within subcatergory works.(In app.components.ts, subcategories and categories are switched in the file... didn't have enough time to clean it up.)
 
 Sort By works with in filtered products. Reset button works.
 
