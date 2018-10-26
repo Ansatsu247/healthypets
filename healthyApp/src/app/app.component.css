@@ -1,0 +1,83 @@
+.productimg {
+  display: block;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+}
+
+.title {
+  margin-top: 20px;
+  text-align: center;
+}
+.bottom-wrap {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 10px;
+
+  margin-left: auto;
+  margin-right: auto;
+}
+.button {
+  background-color: rgb(247, 101, 48);
+  color: white;
+  width: 200px;
+}
+.card-product {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 0px;
+}
+.banner {
+  width: 100%;
+  height: 250px;
+  background-color: rgb(204, 204, 204);
+
+  margin-bottom: 20px;
+}
+
+.filterbar {
+  width: 1200px;
+  height: 100px;
+  box-shadow: 1px 1px 1px 1px rgb(204, 204, 204);
+  margin-bottom: 20px;
+  text-align: center;
+  padding: 20px 0;
+}
+.resetbtn {
+  background-color: rgb(202, 92, 84);
+  color: white;
+  width: 100px;
+}
+
+.searchbar {
+      width: 300px;
+   
+
+  
+}
+.searchbtn{
+    background-color: rgb(238, 238, 238);
+}
+nav {
+    background-color: rgb(103, 127, 171);
+   
+}
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: rgb(231, 173, 67);
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 100px;
+}
+
+#myBtn:hover {
+  background-color: #555;
+}

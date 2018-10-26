@@ -1,0 +1,76 @@
+<button (click)="topFunction()" id="myBtn" title="Go to top">^</button>
+<nav class="navbar navbar-light justify-content-between">
+  <a class="navbar-brand" href="#">
+    <img class="nav-brandimg" src="../assets/logo.png" width="60px">Entirely Pets</a>
+
+  <form class="form-inline" (submit)="submitSearch()">
+    <input class="searchbar" type='text' name='search' [(ngModel)]="search">
+    <button class="searchbtn" type="submit"><i class="fas fa-search"></i></button>
+  </form>
+<div>
+   <i class="fas fa-comments"></i>
+    <i class="fas fa-shopping-cart"></i>
+    </div>
+</nav>
+
+<div class="banner">
+ 
+</div>
+
+
+<div class="container filterbar">
+  <select name='filter' class="filter" [(ngModel)]="filtering" (change)="filterBy($event.target.value)">
+    <option [ngValue]="undefined" disabled selected> categories selected</option>
+
+    <option *ngFor="let category of categories" value="{{ category }}">{{ category }}</option>
+  </select>
+
+  <select name='filter' class="filter" [(ngModel)]="filterid" (change)="filterBy()">
+    <option [ngValue]="undefined" disabled selected> subcategories selected</option>
+    
+  </select>
+
+  <select name='sort' class="sort" [(ngModel)]="sorting" (change)="sortBy()">
+        <option [ngValue]="undefined" disabled selected> Sort By </option>
+    <option value="name">Name (A-Z)</option>
+    <option value="nameR">Name (Z-A)</option>
+    <option value="price low">Price (low to high)</option>
+    <option value="price high">Price (high to low)</option>
+  </select>
+
+  <button class="resetbtn" (click)="reset()">
+    RESET
+  </button>
+  <p>{{ displayed.length }} Products found</p>
+</div>
+
+
+<div class="container well">
+  <div class="row">
+    <div *ngFor="let product of displayed" class="col-md-4 ">
+      <figure  class="card card-product">
+        <div class="img-wrap">
+          <img class="productimg" src="../{{product.img}}">
+        </div>
+        <figcaption class="info-wrap">
+          <h4 class="title">{{product.name}}</h4>
+         
+          <!-- rating-wrap.// -->
+        </figcaption>
+        <div class="bottom-wrap">
+          <a href="" class="button btn btn-lg">${{product.price}}</a>
+          
+          <!-- price-wrap.// -->
+        </div>
+        <!-- bottom-wrap.// -->
+      </figure>
+    </div>
+    <!-- col // -->
+
+  
+    
+
+
+
+</div>
+<router-outlet></router-outlet>
