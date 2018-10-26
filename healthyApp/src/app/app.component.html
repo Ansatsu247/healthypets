@@ -19,6 +19,7 @@
 
 
 <div class="container filterbar">
+  <p>{{filtering}}</p>
   <select name='filter' class="filter" [(ngModel)]="filtering" (change)="filterBy($event.target.value)">
     <option [ngValue]="undefined" disabled selected> categories selected</option>
 

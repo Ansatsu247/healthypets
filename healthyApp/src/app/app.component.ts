@@ -96,7 +96,7 @@ export class AppComponent {
     event.preventDefault()
     if (!this.search) {
       this.setVariables()
-      this.filtering = "default"
+      this.filtering = ""
     }
     else {
       let rgx = new RegExp('^[a-zA-Z0-9_.-]*$')
@@ -106,6 +106,7 @@ export class AppComponent {
         this.searched = temp
         temp = this.createTable(temp, 0)
         this.displayed = temp
+        this.filtering = ""
       }
     }
   }
@@ -136,19 +137,47 @@ export class AppComponent {
   }
 
   filterBy(value){
-    if (value === "All") {
-      this.setVariables()
-    }
-    else {
-      this.search = ""
-      this.filtering = "default"
-      let temp = this.products.filter(product => product.position === value)
+    // if (value === "All") {
+    //   this.setVariables()
+    // }
+    if (value === "Point Guard") {
       
-      this.searched = temp
-  
-      temp = this.createTable(temp, 0)
-      this.displayed = temp
-    }
+      this.filtering = "Point Guard";
+      let temp = this.products.filter(product => product.position === value);
+
+
+      temp = this.createTable(temp, 0);
+      this.displayed = temp;
+    } else if (value === "Shooting Guard") {
+      
+      this.filtering = "Shooting Guard";
+      let temp = this.products.filter(product => product.position === value);
+
+      
+
+      temp = this.createTable(temp, 0);
+      this.displayed = temp;
+    } else if (value === "Small Forward") {
+      this.filtering = "Small Forward";
+      let temp = this.products.filter(product => product.position === value);
+
+
+      temp = this.createTable(temp, 0);
+      this.displayed = temp;
+    } else if (value === "Power Forward") {
+      this.filtering = "Power Forward";
+             let temp = this.products.filter(product => product.position === value);
+
+
+             temp = this.createTable(temp, 0);
+           } else if (value === "Center") {
+             this.filtering = "Center";
+             let temp = this.products.filter(product => product.position === value);
+
+
+             temp = this.createTable(temp, 0);
+             this.displayed = temp;
+           }
   }
 //       this.products.forEach(function (element, index){
 //         if(element.position == "Point Guard"){
