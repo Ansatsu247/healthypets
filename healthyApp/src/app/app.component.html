@@ -19,20 +19,22 @@
 
 
 <div class="container filterbar">
-  <p>{{filtering}}</p>
+  <p class="filterby">{{filtering}}</p>
   <select name='filter' class="filter" [(ngModel)]="filtering" (change)="filterBy($event.target.value)">
-    <option [ngValue]="undefined" disabled selected> categories selected</option>
+    <option [ngValue]="undefined" disabled selected> {{ category }}</option>
 
     <option *ngFor="let category of categories" value="{{ category }}">{{ category }}</option>
   </select>
 
-  <select name='filter' class="filter" [(ngModel)]="filterid" (change)="filterBy()">
-    <option [ngValue]="undefined" disabled selected> subcategories selected</option>
-    
+  <select name='filtersub' class="filtersub" [(ngModel)]="filteringsub" (change)="filtersubBy($event.target.value)">
+    <option [ngValue]="undefined" disabled selected> {{ subcategory }}</option>
+  
+    <option *ngFor="let subcategory of subcategories" value="{{ subcategory }}">{{ subcategory }}</option>
   </select>
 
   <select name='sort' class="sort" [(ngModel)]="sorting" (change)="sortBy()">
         <option [ngValue]="undefined" disabled selected> Sort By </option>
+        
     <option value="name">Name (A-Z)</option>
     <option value="nameR">Name (Z-A)</option>
     <option value="price low">Price (low to high)</option>
@@ -42,7 +44,7 @@
   <button class="resetbtn" (click)="reset()">
     RESET
   </button>
-  <p>{{ displayed.length }} Products found</p>
+  <p class="filterby">{{ displayed.length }} Products found</p>
 </div>
 
 

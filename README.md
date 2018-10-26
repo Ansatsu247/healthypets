@@ -18,9 +18,9 @@ the projects opens in http://localhost:8000/
 
 Functionality that works,
 Search Bar works by searching by product's name.
-filter by catergory works, but you can only choose one. also doesnt not show what you are filtering or subcategory filter doesnt work.(Didn't really want to spend too much time building and wanting to filter complex json data)
+filter by catergory works, but you can only choose one. Sub catergory works(Didn't really want to spend too much time building and wanting to filter complex json data)
 
-Sort By works. Reset button works.
+Sort By works with in filtered products. Reset button works.
 
 shows how many products in that category or filtered or searched.
 
@@ -28,4 +28,4 @@ added product's image in json data that was repopulated by using json data.
 
 This project is responsive.
 
-There is yellow button at bottom right corner that has functionality that scrolls to top 
+There is yellow button at bottom right corner that has functionality that scrolls to top. yellow button only shows when you were scrolled down when page is long.

@@ -46,7 +46,7 @@
 .resetbtn {
   background-color: rgb(202, 92, 84);
   color: white;
-  width: 100px;
+  width: 80px;
 }
 
 .searchbar {
@@ -80,4 +80,9 @@ nav {
 
 #myBtn:hover {
   background-color: #555;
+}
+
+.filterby{
+  width: 100px;
+  display: inline-block;
 }

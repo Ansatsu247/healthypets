@@ -9,52 +9,143 @@ import * as $ from "jquery";
 })
 export class AppComponent {
   products: any;
-    categories: any;
-	searched: any;
-	displayed: any;
-	search: string;
-	pages: any;
-	categoryType: string;
+  categories: any;
+  searched: any;
+  displayed: any;
+  search: string;
+  pages: any;
+  subcategories: any;
   filtering: string;
+  filteringsub: string;
   sorting: string;
   constructor(private _httpService: HttpService) {}
   ngOnInit() {
     this.products = [
       {
-        name: "11111",
-        price: "1.00",
+        name: "Kevin",
+        price: "11.99",
         img: "assets/product1.png",
-        position: "Small Forward"
+        position: "Small Forward",
+        type: "Forward"
       },
       {
-        name: "22222",
-        price: "2.00",
+        name: "Steph",
+        price: "24.98",
         img: "assets/product2.png",
-        position: "Point Guard"
+        position: "Point Guard",
+        type: "Guard"
       },
       {
-        name: "33333",
+        name: "Durant",
+        price: "21.29",
+        img: "assets/product1.png",
+        position: "Small Forward",
+        type: "Forward"
+      },
+      {
+        name: "Curry",
+        price: "30.00",
+        img: "assets/product2.png",
+        position: "Point Guard",
+        type: "Guard"
+      },
+      {
+        name: "Riley",
+        price: "4000.00",
+        img: "assets/product2.png",
+        position: "Point Guard",
+        type: "Guard"
+      },
+      {
+        name: "Ryan",
+        price: "0.04",
+        img: "assets/product2.png",
+        position: "Point Guard",
+        type: "Guard"
+      },
+      {
+        name: "Ayesha",
+        price: "2000000.00",
+        img: "assets/product2.png",
+        position: "Point Guard",
+        type: "Guard"
+      },
+      {
+        name: "Boogie",
         price: "3.00",
         img: "assets/product3.png",
-        position: "Center"
+        position: "Center",
+        type: "Center"
       },
       {
-        name: "44444",
-        price: "4.00",
+        name: "DeMarcus",
+        price: "53.99",
+        img: "assets/product3.png",
+        position: "Center",
+        type: "Center"
+      },
+      {
+        name: "Draymon",
+        price: "0.99",
         img: "assets/product4.png",
-        position: "Power Forward"
+        position: "Power Forward",
+        type: "Forward"
       },
       {
-        name: "55555",
-        price: "5.00",
+        name: "Klay",
+        price: "500.00",
         img: "assets/product5.png",
-        position: "Shooting Guard"
+        position: "Shooting Guard",
+        type: "Guard"
       },
       {
-        name: "66666",
-        price: "6.00",
+        name: "Splash",
+        price: "99.99",
+        img: "assets/product5.png",
+        position: "Shooting Guard",
+        type: "Guard"
+      },
+      {
+        name: "Thompson",
+        price: "20.00",
+        img: "assets/product5.png",
+        position: "Shooting Guard",
+        type: "Guard"
+      },
+      {
+        name: "Iggy",
+        price: "6.99",
         img: "assets/product6.png",
-        position: "Small Forward"
+        position: "Small Forward",
+        type: "Guard"
+      },
+      {
+        name: "Andre",
+        price: "2.99",
+        img: "assets/product6.png",
+        position: "Small Forward",
+        type: "Forward"
+      },
+      {
+        name: "Iggy",
+        price: "80.00",
+        img: "assets/product6.png",
+        position: "Small Forward",
+        type: "Guard"
+      },
+      {
+        name: "Snake",
+        price: "1.00",
+        img: "assets/product1.png",
+        position: "Small Forward",
+        type: "Forward"
+      },
+      {
+        name: "Cupcake",
+        price: "0.50",
+        img: "assets/product1.png",
+        position: "Small Forward",
+        type: "Forward"
       }
     ];
     this.categories = [
@@ -64,11 +155,17 @@ export class AppComponent {
       "Power Forward",
       "Center"
     ];
-    this.setVariables()
-    window.onscroll = function () { scrollFunction() };
+    this.subcategories = ["Guard", "Forward", "Center"];
+    this.setVariables();
+    window.onscroll = function() {
+      scrollFunction();
+    };
 
     function scrollFunction() {
-      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      if (
+        document.body.scrollTop > 20 ||
+        document.documentElement.scrollTop > 20
+      ) {
         document.getElementById("myBtn").style.display = "block";
       } else {
         document.getElementById("myBtn").style.display = "none";
@@ -76,128 +173,140 @@ export class AppComponent {
     }
 
     // When the user clicks on the button, scroll to the top of the document
-    
   }
   topFunction() {
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
   }
   setVariables() {
-    this.search = ""
-    this.searched = [...this.products]
+    this.search = "";
+    this.searched = [...this.products];
 
-    this.displayed = this.createTable(this.products, 0)
-   
-    
- 
-
+    this.displayed = this.createTable(this.products, 0);
   }
   submitSearch() {
-    event.preventDefault()
+    event.preventDefault();
     if (!this.search) {
-      this.setVariables()
-      this.filtering = ""
-    }
-    else {
-      let rgx = new RegExp('^[a-zA-Z0-9_.-]*$')
+      this.setVariables();
+      this.filtering = "";
+      this.filteringsub = "";
+    } else {
+      let rgx = new RegExp("^[a-zA-Z0-9_.-]*$");
       if (rgx.test(this.search)) {
-        let regex = new RegExp('.*' + this.search + '.*')
-        let temp = this.products.filter(product => regex.test(product.name) || regex.test(product.name.toLowerCase()))
-        this.searched = temp
-        temp = this.createTable(temp, 0)
-        this.displayed = temp
-        this.filtering = ""
+        let regex = new RegExp(".*" + this.search + ".*");
+        let temp = this.products.filter(
+          product =>
+            regex.test(product.name) || regex.test(product.name.toLowerCase())
+        );
+        this.searched = temp;
+        temp = this.createTable(temp, 0);
+        this.displayed = temp;
+        this.filtering = "";
+        this.filteringsub = "";
       }
     }
   }
   sortBy() {
-    if (this.sorting === "default") {
-      this.products.sort(function(a, b) {
-        return a.id < b.id ? -1 : 1;
-      });
-    } else if (this.sorting === "name") { 
-      this.products.sort(function(a, b) {
+    if (this.sorting === "name") {
+      this.displayed.sort(function(a, b) {
         return a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1;
       });
     } else if (this.sorting === "nameR") {
-      this.products.sort(function(a, b) {
+      this.displayed.sort(function(a, b) {
         return b.name.toLowerCase() < a.name.toLowerCase() ? -1 : 1;
       });
     } else if (this.sorting === "price low") {
-      this.products.sort(function(a, b) {
-        return a.price < b.price ? -1 : 1;
+      this.displayed.sort(function(a, b) {
+        return parseInt(a.price) < parseInt(b.price) ? -1 : 1;
       });
     } else if (this.sorting === "price high") {
-      this.products.sort(function(a, b) {
-        return a.price > b.price ? -1 : 1;
+      this.displayed.sort(function(a, b) {
+        return parseInt(a.price) > parseInt(b.price) ? -1 : 1;
       });
     }
-    this.displayed = this.createTable(this.products, 0);
-
+    let temp = this.createTable(this.displayed, 0);
+    this.displayed = temp;
   }
 
-  filterBy(value){
-    // if (value === "All") {
-    //   this.setVariables()
-    // }
+  filterBy(value) {
     if (value === "Point Guard") {
-      
       this.filtering = "Point Guard";
       let temp = this.products.filter(product => product.position === value);
-
-
-      temp = this.createTable(temp, 0);
+      console.log(temp);
       this.displayed = temp;
     } else if (value === "Shooting Guard") {
-      
       this.filtering = "Shooting Guard";
       let temp = this.products.filter(product => product.position === value);
 
-      
-
-      temp = this.createTable(temp, 0);
+      // temp = this.createTable(temp, 0);
       this.displayed = temp;
     } else if (value === "Small Forward") {
       this.filtering = "Small Forward";
       let temp = this.products.filter(product => product.position === value);
 
-
-      temp = this.createTable(temp, 0);
+      // temp = this.createTable(temp, 0);
       this.displayed = temp;
     } else if (value === "Power Forward") {
       this.filtering = "Power Forward";
-             let temp = this.products.filter(product => product.position === value);
+      let temp = this.products.filter(product => product.position === value);
 
+      // temp = this.createTable(temp, 0);
+      this.displayed = temp;
+    } else if (value === "Center") {
+      this.filtering = "Center";
+      let temp = this.products.filter(product => product.position === value);
 
-             temp = this.createTable(temp, 0);
-           } else if (value === "Center") {
-             this.filtering = "Center";
-             let temp = this.products.filter(product => product.position === value);
-
-
-             temp = this.createTable(temp, 0);
-             this.displayed = temp;
-           }
+      // temp = this.createTable(temp, 0);
+      this.displayed = temp;
+    } else {
+      this.displayed = this.products;
+    }
   }
-//       this.products.forEach(function (element, index){
-//         if(element.position == "Point Guard"){
-//         console.log('found', element)   
-//           console.log(this.displayed);   
-//           this.displayed.push(element);
-//           console.log(this.displayed);   
-// }
-//       })
-    
+  filtersubBy(value) {
+    if (value === "Guard") {
+      this.filteringsub = "Guard";
+      let temp = this.displayed.filter(product => product.type === value);
+      let temp1 = temp
+      this.displayed = temp1;
+    } 
+    else if (value === "Forward") {
+      this.filteringsub = "Forward";
+      let temp = this.displayed.filter(product => product.type === value);
+      let temp1 = temp;
+      this.displayed = temp1;
+
+      // temp = this.createTable(temp, 0);
+
+    }  else if (value === "Center") {
+      let temp = this.displayed.filter(product => product.type === value);
+      let temp1 = temp;
+      this.displayed = temp1;
+
+      // temp = this.createTable(temp, 0);
+      
+    } else {
+      this.displayed = this.products;
+    }
+  }
+  //       this.products.forEach(function (element, index){
+  //         if(element.position == "Point Guard"){
+  //         console.log('found', element)
+  //           console.log(this.displayed);
+  //           this.displayed.push(element);
+  //           console.log(this.displayed);
+  // }
+  //       })
+
   createTable(data, index) {
     let table = [];
-    for (let i = index * 12; i < index * 12 + 12 && i < data.length; i++) {
+    for (let i = index * 24; i < index * 24 + 24 && i < data.length; i++) {
       table.push(data[i]);
     }
     return table;
   }
-  reset(){
+  reset() {
     this.displayed = this.products;
     this.sorting = "default";
-    this.sortBy()
+    this.sortBy();
   }
 }
